@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NayePankh Foundation - Volunteer & Community Platform</title>
+  <meta name="description" content="A premium volunteer management, gamification, certificates, and community hub for NayePankh Foundation.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="navbar">
+    <div class="logo-container">
+      <div class="logo-icon">NP</div>
+      <div class="logo-text">NayePankh Connect</div>
+    </div>
+    
+    <nav>
+      <ul class="nav-links" id="nav-links-list">
+        <!-- Will be populated dynamically by app.js based on role -->
+      </ul>
+    </nav>
+    
+    <div class="nav-actions">
+      <!-- Session Simulator Dropdown -->
+      <select id="role-simulator" class="sim-selector">
+        <option value="guest">Guest View</option>
+        <option value="volunteer" selected>Volunteer View</option>
+      </select>
+      
+      <!-- Theme Switcher -->
+      <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme">
+        <svg id="theme-toggle-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      
+      <!-- Mobile hamburger -->
+      <button class="hamburger" id="hamburger-btn" aria-label="Open mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORTS CONTAINER -->
+  <main>
+    
+    <!-- 1. LANDING PAGE VIEW -->
+    <section id="landing-view" class="page-view">
+      <div class="landing-hero">
+        <div class="hero-shapes"></div>
+        <div class="hero-content">
+          <h1 class="h1-hero">Together We<br><span class="gradient-text">Create Change.</span></h1>
+          <p class="hero-description">
+            Join thousands of passionate volunteers making a real difference. Empower underprivileged youth, support local education drives, and build resilient communities with NayePankh Foundation.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="openAuthModal()">Become a Volunteer</button>
+            <a href="#explore" class="btn btn-secondary">Explore Campaigns</a>
+          </div>
+        </div>
+        
+        <div class="hero-visuals">
+          <!-- Floating Interactive SVG Illustration -->
+          <svg class="floating-svg-art" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background glow circle -->
+            <circle cx="250" cy="250" r="180" fill="url(#hero-circle-grad)" opacity="0.15" />
+            <!-- Floating items -->
+            <g class="float-item-1">
+              <rect x="80" y="120" width="120" height="120" rx="24" fill="url(#hero-box-1)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+              <text x="140" y="175" fill="white" font-size="28" font-family="Outfit" font-weight="800" text-anchor="middle">🏅</text>
+              <text x="140" y="210" fill="rgba(255,255,255,0.7)" font-size="12" font-family="Plus Jakarta Sans" font-weight="600" text-anchor="middle">Impact Badges</text>
+            </g>
+            <g class="float-item-2">
+              <rect x="260" y="80" width="160" height="100" rx="20" fill="url(#hero-box-2)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+              <text x="340" y="125" fill="#ff6b00" font-size="20" font-family="Outfit" font-weight="950" text-anchor="middle">10,000+</text>
+              <text x="340" y="150" fill="rgba(255,255,255,0.7)" font-size="11" font-family="Plus Jakarta Sans" font-weight="600" text-anchor="middle">Volunteers Connected</text>
+            </g>
+            <g class="float-item-3">
+              <rect x="180" y="280" width="240" height="120" rx="24" fill="url(#hero-box-3)" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+              <circle cx="230" cy="335" r="20" fill="rgba(255,107,0,0.2)" />
+              <text x="230" y="341" fill="white" font-size="16" font-family="Outfit" font-weight="700" text-anchor="middle">❤️</text>
+              <text x="270" y="333" fill="white" font-size="14" font-family="Outfit" font-weight="700">Join the Drive</text>
+              <text x="270" y="352" fill="rgba(255,255,255,0.6)" font-size="11" font-family="Plus Jakarta Sans">Next campaign: Lucknow</text>
+            </g>
+            <defs>
+              <radialGradient id="hero-circle-grad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" transform="translate(250 250) rotate(90) scale(180)">
+                <stop stop-color="#ff6b00" />
+                <stop offset="1" stop-color="#a855f7" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="hero-box-1" x1="80" y1="120" x2="200" y2="240" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#1e1b4b" stop-opacity="0.8"/>
+                <stop offset="1" stop-color="#311042" stop-opacity="0.8"/>
+              </linearGradient>
+              <linearGradient id="hero-box-2" x1="260" y1="80" x2="420" y2="180" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#0f172a" stop-opacity="0.9"/>
+                <stop offset="1" stop-color="#1e293b" stop-opacity="0.9"/>
+              </linearGradient>
+              <linearGradient id="hero-box-3" x1="180" y1="280" x2="380" y2="400" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#111827" stop-opacity="0.95"/>
+                <stop offset="1" stop-color="#030712" stop-opacity="0.95"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Feature Cards -->
+      <h2 class="section-title text-center" style="margin-top:4rem; text-align:center;">Our Platform Features</h2>
+      <div class="features-grid">
+        <div class="glass-card">
+          <span class="feat-icon">🎯</span>
+          <h3>Gamified Impact</h3>
+          <p>Earn badges, raise your impact level, and track your volunteering hours through interactive progress bars.</p>
+        </div>
+        <div class="glass-card">
+          <span class="feat-icon">💬</span>
+          <h3>Community Feed</h3>
+          <p>Share stories, upload campaign photos, and chat with fellow change-makers on our community feed wall.</p>
+        </div>
+        <div class="glass-card">
+          <span class="feat-icon">📜</span>
+          <h3>Instant Certificates</h3>
+          <p>Earn officially verified digital certificates immediately upon completion of volunteer tasks.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. VOLUNTEER DASHBOARD VIEW -->
+    <section id="dashboard-view" class="page-view">
+      <div class="welcome-banner">
+        <div class="profile-summary">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Volunteer Avatar" class="profile-avatar-large" id="dash-avatar">
+          <div class="welcome-info">
+            <h2 id="dash-welcome-title">Welcome back, Anya!</h2>
+            <p>Ready to make an impact today? View your statistics and registered events below.</p>
+          </div>
+        </div>
+        <a href="#explore" class="btn btn-primary">Find Campaigns</a>
+      </div>
+
+      <!-- Stats Counters Grid -->
+      <div class="stats-grid" id="stats-counters-container">
+        <div class="glass-card stat-card">
+          <div class="stat-num" id="stat-hours">0</div>
+          <div class="stat-label">Hours Contributed</div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-num" id="stat-events">0</div>
+          <div class="stat-label">Events Attended</div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-num" id="stat-campaigns">0</div>
+          <div class="stat-label">Campaigns Joined</div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-num" id="stat-certs">0</div>
+          <div class="stat-label">Certificates</div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-num" id="stat-rank">#42</div>
+          <div class="stat-label">Community Rank</div>
+        </div>
+      </div>
+
+      <div class="dashboard-sections">
+        <!-- Left Side: Upcoming Events -->
+        <div class="glass-card">
+          <div class="dashboard-card-title">
+            <span>Upcoming Registered Campaigns</span>
+            <span style="font-size:0.85rem; color:var(--accent-orange); font-weight:500;">Active Session</span>
+          </div>
+          <div class="events-list" id="dashboard-events-list">
+            <!-- Populated dynamically by app.js -->
+            <div class="skeleton skeleton-title"></div>
+            <div class="skeleton skeleton-text" style="width: 80%;"></div>
+            <div class="skeleton skeleton-text" style="width: 60%;"></div>
+          </div>
+        </div>
+
+        <!-- Right Side: Achievement Progress Summary -->
+        <div class="glass-card">
+          <div class="dashboard-card-title">
+            <span>Level Progress</span>
+            <span style="font-size:0.85rem; color:var(--accent-purple); font-weight:600;">Level 3 Impact Maker</span>
+          </div>
+          
+          <div class="achievement-progress-box">
+            <div class="progress-header">
+              <span>Overall Impact Hours</span>
+              <span>45 / 100 Hours</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 45%;"></div>
+            </div>
+          </div>
+
+          <div class="achievement-progress-box">
+            <div class="progress-header">
+              <span>Educational Drives</span>
+              <span>80% Completed</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 80%;"></div>
+            </div>
+          </div>
+
+          <div class="achievement-progress-box">
+            <div class="progress-header">
+              <span>Community Engagement Level</span>
+              <span>60% Unlocked</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 60%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CAMPAIGN DISCOVERY PAGE -->
+    <section id="discovery-view" class="page-view">
+      <div class="discovery-header">
+        <div>
+          <h2 class="section-title" style="margin-bottom:5px;">Explore Campaigns</h2>
+          <p style="color:var(--text-secondary);">Browse active drives, volunteer for projects, and select location-based roles.</p>
+        </div>
+      </div>
+      
+      <!-- Filters and Search -->
+      <div class="discovery-header">
+        <div class="filter-bar">
+          <div class="search-input-wrapper">
+            <input type="text" id="campaign-search" class="search-input" placeholder="Search campaigns by title, skill or keywords...">
+            <svg class="search-icon-svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+          
+          <select id="campaign-category-select" class="filter-select">
+            <option value="all">All Sectors</option>
+            <option value="education">Education Support</option>
+            <option value="shelter">Food & Shelter</option>
+            <option value="environment">Cleanliness & Environment</option>
+          </select>
+          
+          <select id="campaign-location-select" class="filter-select">
+            <option value="all">All Locations</option>
+            <option value="kanpur">Kanpur, UP</option>
+            <option value="lucknow">Lucknow, UP</option>
+            <option value="delhi">Delhi, NCR</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Campaigns grid -->
+      <div class="campaigns-grid" id="campaigns-container-list">
+        <!-- Rendered by app.js -->
+        <div class="glass-card">
+          <div class="skeleton" style="height: 180px; border-radius:12px; margin-bottom:15px;"></div>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text" style="width: 90%;"></div>
+          <div class="skeleton skeleton-text" style="width: 70%;"></div>
+        </div>
+        <div class="glass-card">
+          <div class="skeleton" style="height: 180px; border-radius:12px; margin-bottom:15px;"></div>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text" style="width: 90%;"></div>
+          <div class="skeleton skeleton-text" style="width: 70%;"></div>
+        </div>
+        <div class="glass-card">
+          <div class="skeleton" style="height: 180px; border-radius:12px; margin-bottom:15px;"></div>
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text" style="width: 90%;"></div>
+          <div class="skeleton skeleton-text" style="width: 70%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. VOLUNTEER PROFILE PORTFOLIO VIEW -->
+    <section id="profile-view" class="page-view">
+      <div class="profile-grid">
+        <!-- Profile sidebar -->
+        <div class="profile-sidebar">
+          <div class="glass-card profile-card-details">
+            <div class="profile-photo-wrapper">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Profile Picture" class="profile-picture-full" id="profile-pic">
+              <div class="profile-badge-crown">👑</div>
+            </div>
+            
+            <h2 class="profile-details-name" id="profile-name">Anya Sharma</h2>
+            <div class="profile-details-role">Lead Organizer</div>
+            
+            <div class="profile-meta-info">
+              <div class="profile-meta-row">
+                <span class="profile-meta-label">Joined:</span>
+                <span class="profile-meta-val">Oct 2025</span>
+              </div>
+              <div class="profile-meta-row">
+                <span class="profile-meta-label">Total Hours:</span>
+                <span class="profile-meta-val" id="profile-hours">45 Hours</span>
+              </div>
+              <div class="profile-meta-row">
+                <span class="profile-meta-label">Location:</span>
+                <span class="profile-meta-val">Kanpur, India</span>
+              </div>
+              <div class="profile-meta-row">
+                <span class="profile-meta-label">Primary Skill:</span>
+                <span class="profile-meta-val">Elementary Teaching</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Content area -->
+        <div class="profile-content">
+          <!-- Biography and Skills -->
+          <div class="glass-card">
+            <h3 class="timeline-title" style="font-size:1.2rem; margin-bottom:10px;">About Me</h3>
+            <p style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:1.5rem;">
+              Passionate about community service, children education, and zero waste initiatives. Currently teaching basic elementary school courses and running weekends donation collection events in Kanpur.
+            </p>
+            <h3 class="timeline-title" style="font-size:1.1rem; margin-bottom:10px;">Skills & Competencies</h3>
+            <div class="skill-chips">
+              <span class="skill-chip">Curriculum Design</span>
+              <span class="skill-chip">Public Speaking</span>
+              <span class="skill-chip">Event Planning</span>
+              <span class="skill-chip">Photography</span>
+              <span class="skill-chip">Crisis Relief</span>
+            </div>
+          </div>
+
+          <!-- Campaign timeline history -->
+          <div class="glass-card">
+            <h3 class="timeline-title" style="font-size:1.2rem; margin-bottom:20px;">Volunteer History Timeline</h3>
+            <div class="timeline" id="profile-timeline-list">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. GAMIFIED ACHIEVEMENTS GALLERY -->
+    <section id="achievements-view" class="page-view">
+      <div style="margin-bottom:2rem;">
+        <h2 class="section-title" style="margin-bottom:5px;">Gamified Achievements</h2>
+        <p style="color:var(--text-secondary);">Earn badges and level-ups by supporting NayePankh education, cleanup, and food campaigns.</p>
+      </div>
+
+      <div class="badge-gallery" id="badge-gallery-container">
+        <!-- Badge cards will be populated by app.js -->
+        <div class="glass-card skeleton" style="height: 240px;"></div>
+        <div class="glass-card skeleton" style="height: 240px;"></div>
+        <div class="glass-card skeleton" style="height: 240px;"></div>
+        <div class="glass-card skeleton" style="height: 240px;"></div>
+      </div>
+    </section>
+
+    <!-- 6. COMMUNITY WALL SOCIAL FEED VIEW -->
+    <section id="wall-view" class="page-view">
+      <div class="community-layout">
+        
+        <!-- Left Side: Feeds -->
+        <div>
+          <!-- Create Post Card -->
+          <div class="glass-card wall-input-container" id="post-creator-box">
+            <h3 style="font-family:var(--font-display); font-size:1.15rem;">Share with the Community</h3>
+            <textarea id="community-post-text" class="post-textarea" placeholder="What's your impact story today? Write here..."></textarea>
+            
+            <div class="wall-input-actions">
+              <button class="media-attach-btn" id="attach-photo-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Attach Photos</span>
+              </button>
+              <button class="btn btn-primary" id="community-submit-post" style="padding:10px 20px; font-size:0.85rem;">Post Story</button>
+            </div>
+            <!-- Photo Simulation preview banner -->
+            <div id="attached-photo-preview" style="display:none; font-size:0.8rem; color:var(--accent-orange); padding-top:5px; font-weight:600;">
+              ✓ Photo ready to upload (Simulated Image URL Selected)
+            </div>
+          </div>
+
+          <!-- Social Posts Stream -->
+          <div class="feed-container" id="social-feed-stream">
+            <!-- Dynamically populated by app.js -->
+          </div>
+        </div>
+
+        <!-- Right Side: Leaders & Guidelines -->
+        <div>
+          <div class="glass-card community-sidebar-section">
+            <h3 style="font-family:var(--font-display); font-size:1.1rem; border-bottom:1px solid var(--border-color); padding-bottom:10px; margin-bottom:15px;">Monthly Leaderboard</h3>
+            <div class="community-leaders-list" id="leaderboard-container">
+              <!-- Dynamically populated by app.js -->
+            </div>
+          </div>
+
+          <div class="glass-card community-sidebar-section">
+            <h3 style="font-family:var(--font-display); font-size:1.1rem; border-bottom:1px solid var(--border-color); padding-bottom:10px; margin-bottom:15px;">Community Rules</h3>
+            <ul style="list-style:none; font-size:0.85rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:10px;">
+              <li>🤝 Be kind, inspiring, and supportive</li>
+              <li>📸 Post photos from official drives only</li>
+              <li>🛡️ Respect privacy of all beneficiaries</li>
+              <li>🚀 Encourage other volunteers</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. CERTIFICATES SECTION VIEW -->
+    <section id="certificates-view" class="page-view">
+      <div style="margin-bottom:2rem;">
+        <h2 class="section-title" style="margin-bottom:5px;">Your Certificates</h2>
+        <p style="color:var(--text-secondary);">Download and share your officially signed volunteer recognition certificates here.</p>
+      </div>
+
+      <div class="certs-grid" id="certificates-gallery-container">
+        <!-- Populated dynamically by app.js -->
+      </div>
+    </section>
+
+
+
+  </main>
+
+  <!-- MODAL: EVENT REGISTRATION DETAILS -->
+  <div class="modal-overlay" id="event-detail-modal">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="close-detail-modal" aria-label="Close modal">&times;</button>
+      <h2 class="modal-title" id="modal-event-title">Lucknow Education Drive</h2>
+      
+      <div style="margin-bottom:20px; font-size:0.9rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:10px;">
+        <div>📅 <strong>Date:</strong> <span id="modal-event-date">June 20, 2026</span></div>
+        <div>📍 <strong>Location:</strong> <span id="modal-event-location">Lucknow Slums area</span></div>
+        <div>💪 <strong>Skills Required:</strong> <span id="modal-event-skills">Basic teaching, communication</span></div>
+        <div>🎟️ <strong>Slots Available:</strong> <span id="modal-event-slots" style="color:var(--accent-orange); font-weight:700;">8 / 15 slots</span></div>
+        <p id="modal-event-desc" style="margin-top:10px; line-height:1.5;">
+          Help teach basic numeracy and reading skills to school kids in slums. Materials and guidelines will be provided by our team.
+        </p>
+      </div>
+      
+      <div style="display:flex; gap:10px; justify-content:flex-end;">
+        <button class="btn btn-secondary" id="modal-save-event">Save Campaign</button>
+        <button class="btn btn-primary" id="modal-register-confirm">Register Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LOGIN & SIGNUP AUTHENTICATION -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-content" style="max-width: 420px;">
+      <button class="modal-close-btn" id="close-auth-modal" aria-label="Close modal">&times;</button>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tab-login-btn" onclick="switchAuthTab('login')">Log In</button>
+        <button class="auth-tab-btn" id="tab-signup-btn" onclick="switchAuthTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- Log In Form Content -->
+      <div id="auth-login-content">
+        <form id="auth-login-form" class="auth-form" onsubmit="handleAuthSubmit(event)">
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="login-email">Email Address</label>
+            <input type="text" id="login-email" class="admin-form-input" placeholder="example@123" required>
+          </div>
+          
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="login-password">Password</label>
+            <input type="password" id="login-password" class="admin-form-input" placeholder="••••••••" required>
+            <div class="auth-error-msg" id="login-error-text">Invalid credentials. Use trial: example@123 / 12345678</div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Log In</button>
+        </form>
+
+        <div class="auth-tip-card">
+          💡 <strong>Trial Credentials:</strong><br>
+          Email: <code style="color:var(--accent-orange);">example@123</code><br>
+          Password: <code style="color:var(--accent-orange);">12345678</code>
+        </div>
+      </div>
+
+      <!-- Sign Up Form Content -->
+      <div id="auth-signup-content" style="display: none;">
+        <p style="font-size:0.9rem; color:var(--text-secondary); text-align:center; margin-bottom:15px;">Create a volunteer profile portfolio instantly.</p>
+        <form class="auth-form" onsubmit="event.preventDefault(); handleSocialAuth('Google');">
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" class="admin-form-input" placeholder="Anya Sharma" required>
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="signup-email">Email Address</label>
+            <input type="email" id="signup-email" class="admin-form-input" placeholder="anya@example.com" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Create Account</button>
+        </form>
+      </div>
+
+      <div class="auth-divider">or continue with</div>
+
+      <!-- OAuth Social buttons -->
+      <div class="oauth-providers-grid">
+        <button class="oauth-btn" onclick="handleSocialAuth('Google')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+          </svg>
+          Google
+        </button>
+        <button class="oauth-btn" onclick="handleSocialAuth('Apple')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.21.67-2.93 1.49-.62.69-1.16 1.84-1.01 2.96 1.12.09 2.27-.57 2.95-1.39z"/>
+          </svg>
+          Apple
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HIDDEN CANVAS FOR CERTIFICATE DRAWING AND MOCK PDF GENERATION -->
+  <canvas id="cert-draw-canvas" width="800" height="600"></canvas>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-container">
+          <div class="logo-icon">NP</div>
+          <div class="logo-text">NayePankh Connect</div>
+        </div>
+        <p>A premier platform for volunteer connection, campaign management, and digital impact rewards for NayePankh Foundation.</p>
+      </div>
+      <div>
+        <h4 class="footer-title">Volunteer Links</h4>
+        <ul class="footer-links">
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#explore">Explore Campaigns</a></li>
+          <li><a href="#wall">Community Wall</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Foundation</h4>
+        <ul class="footer-links">
+          <li><a href="https://nayepankh.com/" target="_blank" rel="noopener">Official Website</a></li>
+          <li><a href="https://nayepankh.com/about-us" target="_blank" rel="noopener">Our Mission</a></li>
+          <li><a href="https://nayepankh.com/donate" target="_blank" rel="noopener">Donate Funds</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Contact</h4>
+        <ul class="footer-links">
+          <li><span style="color:var(--text-secondary);">support@nayepankh.org</span></li>
+          <li><span style="color:var(--text-secondary);">+91 83185 00505</span></li>
+          <li><span style="color:var(--text-secondary);">Kanpur / Lucknow, UP</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 NayePankh Foundation. All Rights Reserved.</span>
+      <span>Made with 🧡 by NayePankh Dev Team</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

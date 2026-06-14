@@ -1,0 +1,10 @@
+{
+  "name": "naye-pankh-platform",
+  "version": "1.0.0",
+  "description": "Volunteer & Community Connect Platform for NayePankh Foundation",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -c-1 -p 8082"
+  },
+  "dependencies": {}
+}
